@@ -39,7 +39,7 @@ public final class Poet {
         return giveAllNotIn(Dash.set.of(list));
     }
 
-    public static Strings.Replace in(String toReplace) {
-        return strings.replace(toReplace);
+    public static Strings.In in(String text) {
+        return strings.in(text);
     }
 }
