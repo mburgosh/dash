@@ -4,8 +4,9 @@ import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ListMultimap;
 import com.google.common.collect.MultimapBuilder;
 import com.google.common.collect.SetMultimap;
+import one.util.streamex.StreamEx;
 
-import java.util.HashMap;
+import java.util.Arrays;
 import java.util.Map;
 import java.util.concurrent.ConcurrentMap;
 
@@ -35,11 +36,7 @@ public final class Maps {
 
     @SafeVarargs
     public final <K, V> Map<K, V> ofEntries(Map.Entry<K, V>... entries) {
-        HashMap<K, V> map = new HashMap<>();
-        for (int i = 0; i < entries.length; i++) {
-            map.put(entries[i].getKey(), entries[i].getValue());
-        }
-        return map;
+        return StreamEx.of(entries).toMap(Map.Entry::getKey, Map.Entry::getValue);
     }
 
     public final <K, V> ImmutableMap<K, V> immutable(K k, V v) {
@@ -64,9 +61,7 @@ public final class Maps {
 
     public final <K, V> ImmutableMap<K, V> immutableEntries(Map.Entry<K, V>... entries) {
         ImmutableMap.Builder<K, V> builder = ImmutableMap.builder();
-        for (int i = 0; i < entries.length; i++) {
-            builder.put(entries[i]);
-        }
+        Arrays.stream(entries).forEach(entry -> builder.put(entry.getKey(), entry.getValue()));
         return builder.build();
     }
 
