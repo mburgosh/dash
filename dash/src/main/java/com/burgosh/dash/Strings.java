@@ -19,7 +19,7 @@ public class Strings {
     }
 
     public boolean isNotBlank_andNotNull(final CharSequence cs) {
-        /* This method is here to remind yoi that this also checks for null*/
+        /* This method is here to remind you that this also checks for null*/
         return StringUtils.isNotBlank(cs);
     }
 
