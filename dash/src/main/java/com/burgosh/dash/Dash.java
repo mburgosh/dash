@@ -12,6 +12,7 @@ public class Dash {
     public static final IOs     io     = new IOs();
     public static final Maps    map    = new Maps();
     public static final Strings string = new Strings();
+    public static final Futures future = new Futures();
 
     private Dash() {
     }

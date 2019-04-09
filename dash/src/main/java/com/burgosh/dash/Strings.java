@@ -2,20 +2,24 @@ package com.burgosh.dash;
 
 import org.apache.commons.lang3.StringUtils;
 
-public class Strings {
+public final class Strings {
     Strings(){
     }
 
-    public Replace replace(String toReplace) {
-        return new Replace(toReplace);
+    public String replaceIn(String text, String search, String replacement) {
+        return StringUtils.replace(text, search, replacement);
     }
 
-    public String replace(String text, String search, String replacement) {
-        return StringUtils.replace(text, search, replacement);
+    public boolean startsWith(String start, String text) {
+        return StringUtils.startsWith(text, start);
     }
 
     public boolean isNotBlank(final CharSequence cs) {
         return StringUtils.isNotBlank(cs);
+    }
+
+    public boolean isBlank(CharSequence cs) {
+        return StringUtils.isBlank(cs);
     }
 
     public boolean isNotBlank_andNotNull(final CharSequence cs) {
@@ -23,29 +27,11 @@ public class Strings {
         return StringUtils.isNotBlank(cs);
     }
 
-    public class Replace {
-        private final String toReplace;
+    public boolean endsWith(String end, String text) {
+        return StringUtils.endsWith(text, end);
+    }
 
-        private Replace(String toReplace) {
-            this.toReplace = toReplace;
-        }
-
-        public ReplaceWith with(String replacement) {
-            return new ReplaceWith(toReplace, replacement);
-        }
-
-        public class ReplaceWith {
-            private final String toReplace;
-            private final String replacement;
-
-            private ReplaceWith(String toReplace, String replacement) {
-                this.toReplace = toReplace;
-                this.replacement = replacement;
-            }
-
-            public String in(String stringToReplace) {
-                return StringUtils.replace(stringToReplace, toReplace, replacement);
-            }
-        }
+    public boolean contains(String c, String text) {
+        return StringUtils.contains(text, c);
     }
 }

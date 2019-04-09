@@ -62,9 +62,7 @@ class Usage {
             LocalDateTime localMidnight = LocalDateTime.of(localNow.toLocalDate().plusDays(1), LocalTime.MIDNIGHT);
 
             return localNow.until(localMidnight, ChronoUnit.HOURS);
-        }).mapKeys(cityLabel -> Dash.string.replace("Now in")
-                                           .with("Hours to midnight in")
-                                           .in(cityLabel)
+        }).mapKeys(cityLabel -> Dash.string.replaceIn(cityLabel, "Now in", "Hours to midnight")
         ).toMap();
         log.info("Hours to midnight: {}", hoursToMidnight);
 

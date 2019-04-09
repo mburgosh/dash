@@ -37,4 +37,12 @@ public final class Sets {
     public final <T> ImmutableSet<T> immutable(Iterable<? extends T> elements) {
         return ImmutableSet.copyOf(elements);
     }
+
+    public <T> ImmutableSet<T> giveAllNotIn(Set<T> all, Set<T> notIn) {
+        return com.google.common.collect.Sets.difference(all, notIn).immutableCopy();
+    }
+
+    public <T> ImmutableSet<T> giveAllAlsoIn(Set<T> all, Set<T> alsoIn) {
+        return com.google.common.collect.Sets.union(all, alsoIn).immutableCopy();
+    }
 }
