@@ -11,8 +11,8 @@ public final class Sets {
     }
 
     @SafeVarargs
-    public final <T> Set<T> of(T ...elements) {
-        return com.google.common.collect.Sets.newHashSet(elements);
+    public final <T> Set<T> of(T ...of) {
+        return com.google.common.collect.Sets.newHashSet(of);
     }
 
     public final <T> Set<T> of(Iterable<? extends T> elements) {

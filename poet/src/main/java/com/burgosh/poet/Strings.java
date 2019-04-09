@@ -27,21 +27,21 @@ public final class Strings {
             this.text = text;
         }
 
-        public ToReplace replace(String toReplace) {
-            return new ToReplace(text, toReplace);
+        public Replace replace(String replace) {
+            return new Replace(text, replace);
         }
 
-        public final class ToReplace {
+        public final class Replace {
             private final String text;
             private final String replace;
 
-            private ToReplace(String text, String replace) {
+            private Replace(String text, String replace) {
                 this.text = text;
                 this.replace = replace;
             }
 
-            public String with(String replacement) {
-                return StringUtils.replace(text, replace, replacement);
+            public String with(String with) {
+                return StringUtils.replace(text, replace, with);
             }
         }
     }

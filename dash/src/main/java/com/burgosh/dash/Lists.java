@@ -12,8 +12,8 @@ public final class Lists {
     }
 
     @SafeVarargs
-    public final <T> List<T> of(T ...elements) {
-        return com.google.common.collect.Lists.newArrayList(elements);
+    public final <T> List<T> of(T ...of) {
+        return com.google.common.collect.Lists.newArrayList(of);
     }
 
     public final <T> List<T> of(Iterable<? extends T> elements) {

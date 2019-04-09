@@ -11,12 +11,12 @@ public final class Poet {
 
     private static final Strings strings = new Strings();
 
-    public static DoesString does(String someString) {
-        return new DoesString(someString);
+    public static DoesString does(String does) {
+        return new DoesString(does);
     }
 
-    public static IsString is(String someString) {
-        return new IsString(someString);
+    public static IsString is(String is) {
+        return new IsString(is);
     }
 
     public static <T> IsList<T> is(List<T> list) {
@@ -39,7 +39,7 @@ public final class Poet {
         return giveAllNotIn(Dash.set.of(list));
     }
 
-    public static Strings.In in(String text) {
-        return strings.in(text);
+    public static Strings.In in(String in) {
+        return strings.in(in);
     }
 }

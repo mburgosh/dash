@@ -17,7 +17,7 @@ public final class DoesString {
         return Dash.string.endsWith(end, someString);
     }
 
-    public boolean contain(String c) {
-        return Dash.string.contains(c, someString);
+    public boolean contain(String contain) {
+        return Dash.string.contains(contain, someString);
     }
 }
