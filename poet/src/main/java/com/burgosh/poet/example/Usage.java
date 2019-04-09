@@ -31,8 +31,8 @@ public class Usage {
 
         log.info(
                 Poet.in("Now in Oslo!")
-                    .replace("Now in")
-                    .with("This midnight in")
+                    .replace("Oslo")
+                    .with("New York")
         );
 
         Set<String> desired = Dash.set.of("one", "two", "three", "four");
