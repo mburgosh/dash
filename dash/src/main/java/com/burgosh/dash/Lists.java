@@ -39,11 +39,11 @@ public final class Lists {
     }
 
     @SafeVarargs
-    public final <T> ImmutableList<T> ofFinal(T ...elements) {
+    public final <T> ImmutableList<T> immutable(T ...elements) {
         return ImmutableList.copyOf(elements);
     }
 
-    public final <T> ImmutableList<T> ofFinal(Iterable<? extends T> elements) {
+    public final <T> ImmutableList<T> immutable(Iterable<? extends T> elements) {
         return ImmutableList.copyOf(elements);
     }
 }

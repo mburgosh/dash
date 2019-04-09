@@ -13,17 +13,24 @@ public final class Maps {
     Maps() {
     }
 
-    public <K, V> Map<K, V> of(K k, V v) {
-        HashMap<K, V> map = new HashMap<>();
-        map.put(k, v);
-        return map;
+    public final <K, V> Map<K, V> of(K k, V v) {
+        return ofEntries(entry(k, v));
     }
 
-    public <K, V> Map<K, V> of(K k1, V v1, K k2, V v2) {
-        HashMap<K, V> map = new HashMap<>();
-        map.put(k1, v1);
-        map.put(k2, v2);
-        return map;
+    public final <K, V> Map<K, V> of(K k1, V v1, K k2, V v2) {
+        return ofEntries(entry(k1, v1), entry(k2, v2));
+    }
+
+    public final <K, V> Map<K, V> of(K k1, V v1, K k2, V v2, K k3, V v3) {
+        return ofEntries(entry(k1, v1), entry(k2, v2), entry(k3, v3));
+    }
+
+    public final <K, V> Map<K, V> of(K k1, V v1, K k2, V v2, K k3, V v3, K k4, V v4) {
+        return ofEntries(entry(k1, v1), entry(k2, v2), entry(k3, v3), entry(k4, v4));
+    }
+
+    public final <K, V> Map<K, V> of(K k1, V v1, K k2, V v2, K k3, V v3, K k4, V v4, K k5, V v5) {
+        return ofEntries(entry(k1, v1), entry(k2, v2), entry(k3, v3), entry(k4, v4), entry(k5, v5));
     }
 
     @SafeVarargs
@@ -35,28 +42,27 @@ public final class Maps {
         return map;
     }
 
-    public final <K, V> ImmutableMap<K, V> ofFinal(K k, V v) {
+    public final <K, V> ImmutableMap<K, V> immutable(K k, V v) {
         return ImmutableMap.of(k, v);
     }
 
-    public final <K, V> ImmutableMap<K, V> ofFinal(K k1, V v1, K k2, V v2) {
+    public final <K, V> ImmutableMap<K, V> immutable(K k1, V v1, K k2, V v2) {
         return ImmutableMap.of(k1, v1, k2, v2);
     }
 
-    public final <K, V> ImmutableMap<K, V> ofFinal(
-            K key1,
-            V value1,
-            K key2,
-            V value2,
-            K key3,
-            V value3,
-            K key4,
-            V value4
-    ) {
-        return ImmutableMap.of(key1, value1, key2, value2, key3, value3, key4, value4);
+    public final <K, V> ImmutableMap<K, V> immutable(K k1, V v1, K k2, V v2, K k3, V v3) {
+        return ImmutableMap.of(k1, v1, k2, v2, k3, v3);
     }
 
-    public final <K, V> ImmutableMap<K, V> ofFinalEntries(Map.Entry<K, V>... entries) {
+    public final <K, V> ImmutableMap<K, V> immutable(K k1, V v1, K k2, V v2, K k3, V v3, K k4, V v4) {
+        return ImmutableMap.of(k1, v1, k2, v2, k3, v3, k4, v4);
+    }
+
+    public final <K, V> ImmutableMap<K, V> immutable(K k1, V v1, K k2, V v2, K k3, V v3, K k4, V v4, K k5, V v5) {
+        return ImmutableMap.of(k1, v1, k2, v2, k3, v3, k4, v4, k5, v5);
+    }
+
+    public final <K, V> ImmutableMap<K, V> immutableEntries(Map.Entry<K, V>... entries) {
         ImmutableMap.Builder<K, V> builder = ImmutableMap.builder();
         for (int i = 0; i < entries.length; i++) {
             builder.put(entries[i]);

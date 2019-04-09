@@ -26,7 +26,7 @@ class Usage {
         Map<String, String> map = Dash.map.of("key1", "value1", "ke2", "value2");
         log.info("Map: {}", map);
 
-        ImmutableMap<String, Integer> immutableMap = Dash.map.ofFinal(
+        ImmutableMap<String, Integer> immutableMap = Dash.map.immutable(
                 "This", 1,
                 "will", 2,
                 "not", 3,

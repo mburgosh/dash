@@ -29,12 +29,12 @@ public final class Sets {
     }
 
     @SafeVarargs
-    public final <T> ImmutableSet<T> ofFinal(T ...elements) {
+    public final <T> ImmutableSet<T> immutable(T ...elements) {
         return ImmutableSet.copyOf(elements);
     }
 
 
-    public final <T> ImmutableSet<T> ofFinal(Iterable<? extends T> elements) {
+    public final <T> ImmutableSet<T> immutable(Iterable<? extends T> elements) {
         return ImmutableSet.copyOf(elements);
     }
 }
