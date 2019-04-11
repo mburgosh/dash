@@ -2,7 +2,7 @@
 
 Inspired by Lodash (https://lodash.com/), but the capital version.
 
-Dash's API simply guide you to the underlying utility libraries, or help you create simple collections. It is not meant to replace these libraries, it just gives easy access to common operations.
+*API router*: Dash's API simply route you to the underlying utility libraries, or help you create simple collections. It is not meant to replace these libraries, it just gives easy access to common operations.
 
 Relying on tried and proved libraries:
 * Guava (https://github.com/google/guava)
