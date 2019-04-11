@@ -1,5 +1,7 @@
 # Dash
 
+[![Build Status](https://travis-ci.org/mburgosh/dash.svg?branch=master)](https://travis-ci.org/mburgosh/dash)
+
 Inspired by Lodash (https://lodash.com/), but the capital version.
 
 *API router*: Dash's API simply route you to the underlying utility libraries, or help you create simple collections. It is not meant to replace these libraries, it just gives easy access to common operations.
