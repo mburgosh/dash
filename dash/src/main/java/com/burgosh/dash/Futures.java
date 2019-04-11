@@ -67,22 +67,9 @@ public class Futures {
                 T concreteFuture = possibleFuture.get();
                 results.add(concreteFuture);
             }
-            catch (InterruptedException | ExecutionException ignored) { }
-        }
-
-        return results;
-    }
-
-    public static <T> List<T> ofAllSuccessful(List<CompletableFuture<T>> possibleFutures, Function<ExecutionException, RuntimeException> exceptionMapper) {
-        List<T> results = new ArrayList<>();
-
-        for (CompletableFuture<T> possibleFuture : possibleFutures) {
-            try {
-                T concreteFuture = possibleFuture.get();
-                results.add(concreteFuture);
-            }
             catch (InterruptedException | ExecutionException ignored) {
-                // todo maybe some logging here
+                // swallows exceptions
+                // maybe have a logger here?
             }
         }
 
