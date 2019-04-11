@@ -26,7 +26,7 @@
         <connection>scm:git:https://github.com/mburgosh/dash.git</connection>
         <developerConnection>scm:git:https://github.com/mburgosh/dash.git</developerConnection>
         <tag>head</tag>
-        <url>https://github.com/mburgosh/dash</url>
+        <url>http://dash.burgosh.com</url>
     </scm>
 
     <modules>
@@ -36,6 +36,7 @@
 
     <properties>
         <java.version>1.8</java.version>
+        <site.release.url>http://dash.burgosh.com</site.release.url>
     </properties>
 
     <dependencies>
@@ -77,32 +78,7 @@
             <url>http://version99.qos.ch/</url>
         </repository>
     </repositories>
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.codehaus.gmavenplus</groupId>
-                <artifactId>gmavenplus-plugin</artifactId>
-                <version>1.5</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>compile</goal>
-                            <goal>testCompile</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.6.0</version>
-                <configuration>
-                    <source>${java.version}</source>
-                    <target>${java.version}</target>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
+
 
     <profiles>
         <profile>
@@ -122,19 +98,19 @@
                 </site>
             </distributionManagement>
         </profile>
-        <profile>
-            <!-- Development deployment profile -->
-            <!-- Sets the site repository to point to the development repo -->
-            <id>deployment-development</id>
-            <distributionManagement>
-                <site>
-                    <id>site-development</id>
-                    <name>Project Development Documentation Site</name>
-                    <!-- The URL should be set externally -->
-                    <url>${site.develop.url}</url>
-                </site>
-            </distributionManagement>
-        </profile>
+<!--        <profile>-->
+<!--            &lt;!&ndash; Development deployment profile &ndash;&gt;-->
+<!--            &lt;!&ndash; Sets the site repository to point to the development repo &ndash;&gt;-->
+<!--            <id>deployment-development</id>-->
+<!--            <distributionManagement>-->
+<!--                <site>-->
+<!--                    <id>site-development</id>-->
+<!--                    <name>Project Development Documentation Site</name>-->
+<!--                    &lt;!&ndash; The URL should be set externally &ndash;&gt;-->
+<!--                    <url>${site.develop.url}</url>-->
+<!--                </site>-->
+<!--            </distributionManagement>-->
+<!--        </profile>-->
         <profile>
             <!-- Deployment profile -->
             <!-- Sets ups the environment for deployment -->
@@ -160,6 +136,28 @@
         <defaultGoal>clean package install</defaultGoal>
         <plugins>
             <plugin>
+                <groupId>org.codehaus.gmavenplus</groupId>
+                <artifactId>gmavenplus-plugin</artifactId>
+                <version>1.5</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>compile</goal>
+                            <goal>testCompile</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.6.0</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                </configuration>
+            </plugin>
+            <plugin>
                 <!-- Changes -->
                 <!-- Takes care of the changes log -->
                 <!-- It is set to also validate the changes log file -->
@@ -184,20 +182,6 @@
                         </configuration>
                     </execution>
                 </executions>
-            </plugin>
-            <plugin>
-                <!-- Site -->
-                <!-- Generates the Maven Site -->
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-site-plugin</artifactId>
-                <dependencies>
-                    <dependency>
-                        <!-- Docs Maven Skin -->
-                        <groupId>com.bernardomg.maven.skins</groupId>
-                        <artifactId>docs-maven-skin</artifactId>
-                        <version>${site.skin.version}</version>
-                    </dependency>
-                </dependencies>
             </plugin>
         </plugins>
     </build>
