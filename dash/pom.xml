@@ -11,10 +11,9 @@
     </parent>
 
     <artifactId>dash</artifactId>
-    <version>1.0.0-BETA-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>Dash</name>
+    <name>${project.groupId}:${project.artifactId}</name>
 
     <dependencies>
         <dependency>
