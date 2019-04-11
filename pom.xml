@@ -14,6 +14,21 @@
     <url>https://github.com/mburgosh/dash</url>
     <inceptionYear>2019</inceptionYear>
 
+    <licenses>
+        <license>
+            <name>MIT License</name>
+            <url>https://choosealicense.com/licenses/mit/</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <scm>
+        <connection>scm:git:https://github.com/mburgosh/dash.git</connection>
+        <developerConnection>scm:git:https://github.com/mburgosh/dash.git</developerConnection>
+        <tag>head</tag>
+        <url>https://github.com/mburgosh/dash</url>
+    </scm>
+
     <modules>
         <module>dash</module>
         <module>poet</module>
@@ -89,4 +104,101 @@
         </plugins>
     </build>
 
+    <profiles>
+        <profile>
+            <!-- Release deployment profile -->
+            <!-- Sets the site repository to point to the releases repo -->
+            <id>deployment-release</id>
+            <activation>
+                <!-- Active by default so the repository appears in the reports -->
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <distributionManagement>
+                <site>
+                    <id>site</id>
+                    <name>Project Documentation Site</name>
+                    <!-- The URL should be set externally -->
+                    <url>${site.release.url}</url>
+                </site>
+            </distributionManagement>
+        </profile>
+        <profile>
+            <!-- Development deployment profile -->
+            <!-- Sets the site repository to point to the development repo -->
+            <id>deployment-development</id>
+            <distributionManagement>
+                <site>
+                    <id>site-development</id>
+                    <name>Project Development Documentation Site</name>
+                    <!-- The URL should be set externally -->
+                    <url>${site.develop.url}</url>
+                </site>
+            </distributionManagement>
+        </profile>
+        <profile>
+            <!-- Deployment profile -->
+            <!-- Sets ups the environment for deployment -->
+            <id>deployment</id>
+            <properties>
+                <!-- Tests are skipped -->
+                <maven.test.skip>true</maven.test.skip>
+            </properties>
+        </profile>
+    </profiles>
+
+    <developers>
+        <developer>
+            <id>mburgosh</id>
+            <name>Mauricio Burgos Herrera</name>
+            <email>m@burgosh.com</email>
+            <url>https://github.com/mburgosh</url>
+            <timezone>CET</timezone>
+        </developer>
+    </developers>
+
+    <build>
+        <defaultGoal>clean package install</defaultGoal>
+        <plugins>
+            <plugin>
+                <!-- Changes -->
+                <!-- Takes care of the changes log -->
+                <!-- It is set to also validate the changes log file -->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-changes-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>check-changes</id>
+                        <phase>pre-site</phase>
+                        <goals>
+                            <goal>changes-check</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>validate-changes</id>
+                        <phase>pre-site</phase>
+                        <goals>
+                            <goal>changes-validate</goal>
+                        </goals>
+                        <configuration>
+                            <failOnError>true</failOnError>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <!-- Site -->
+                <!-- Generates the Maven Site -->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+                <dependencies>
+                    <dependency>
+                        <!-- Docs Maven Skin -->
+                        <groupId>com.bernardomg.maven.skins</groupId>
+                        <artifactId>docs-maven-skin</artifactId>
+                        <version>${site.skin.version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+        </plugins>
+    </build>
 </project>
