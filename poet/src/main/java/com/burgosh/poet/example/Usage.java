@@ -30,9 +30,9 @@ public class Usage {
         log.info("Is it? {}", isIt);
 
         log.info(
-                Poet.in("Now in Oslo!")
-                    .replace("Oslo")
-                    .with("New York")
+                Poet.replace("Monday")
+                    .with("Friday")
+                    .in("Gotta get down on Monday!")
         );
 
         Set<String> desired = Dash.set.of("one", "two", "three", "four");

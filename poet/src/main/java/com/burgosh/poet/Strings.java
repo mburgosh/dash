@@ -6,8 +6,8 @@ public final class Strings {
     Strings(){
     }
 
-    public In in(String text) {
-        return new In(text);
+    public Replace replace(String toReplace) {
+        return new Replace(toReplace);
     }
 
 
@@ -20,28 +20,28 @@ public final class Strings {
         return StringUtils.contains(text, c);
     }
 
-    public final class In {
-        private final String text;
+    public final class Replace {
+        private final String toReplace;
 
-        private In(String text) {
-            this.text = text;
+        private Replace(String toReplace) {
+            this.toReplace = toReplace;
         }
 
-        public Replace replace(String replace) {
-            return new Replace(text, replace);
+        public With with(String with) {
+            return new With(toReplace, with);
         }
 
-        public final class Replace {
-            private final String text;
-            private final String replace;
+        public final class With {
+            private final String toReplace;
+            private final String with;
 
-            private Replace(String text, String replace) {
-                this.text = text;
-                this.replace = replace;
+            private With(String toReplace, String with) {
+                this.toReplace = toReplace;
+                this.with = with;
             }
 
-            public String with(String with) {
-                return StringUtils.replace(text, replace, with);
+            public String in(String in) {
+                return StringUtils.replace(in, toReplace, with);
             }
         }
     }
