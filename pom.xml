@@ -36,41 +36,83 @@
 
     <properties>
         <java.version>1.8</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
         <site.release.url>http://dash.burgosh.com</site.release.url>
+        <spock-core.version>1.0-groovy-2.4</spock-core.version>
+        <groovy-all.version>2.4.7</groovy-all.version>
+        <dropwizard-logging.version>1.3.5</dropwizard-logging.version>
     </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.burgosh.dash</groupId>
+                <artifactId>dash</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.burgosh.dash</groupId>
+                <artifactId>poet</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.spockframework</groupId>
+                <artifactId>spock-core</artifactId>
+                <version>${spock-core.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.codehaus.groovy</groupId>
+                <artifactId>groovy-all</artifactId>
+                <version>${groovy-all.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>io.dropwizard</groupId>
+                <artifactId>dropwizard-logging</artifactId>
+                <version>${dropwizard-logging.version}</version>
+                <scope>runtime</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>1.7.26</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>commons-logging</groupId>
+                <artifactId>commons-logging</artifactId>
+                <version>99-empty</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <dependencies>
         <dependency>
             <groupId>org.spockframework</groupId>
             <artifactId>spock-core</artifactId>
-            <version>1.0-groovy-2.4</version>
-            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.codehaus.groovy</groupId>
             <artifactId>groovy-all</artifactId>
-            <version>2.4.7</version>
-            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>io.dropwizard</groupId>
             <artifactId>dropwizard-logging</artifactId>
-            <version>1.3.5</version>
-            <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
-            <version>1.7.26</version>
         </dependency>
-
         <dependency>
             <groupId>commons-logging</groupId>
             <artifactId>commons-logging</artifactId>
-            <version>99-empty</version>
         </dependency>
 
     </dependencies>
+
     <repositories>
         <repository>
             <id>version99</id>
@@ -157,32 +199,33 @@
                     <target>${java.version}</target>
                 </configuration>
             </plugin>
-            <plugin>
-                <!-- Changes -->
-                <!-- Takes care of the changes log -->
-                <!-- It is set to also validate the changes log file -->
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-changes-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>check-changes</id>
-                        <phase>pre-site</phase>
-                        <goals>
-                            <goal>changes-check</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>validate-changes</id>
-                        <phase>pre-site</phase>
-                        <goals>
-                            <goal>changes-validate</goal>
-                        </goals>
-                        <configuration>
-                            <failOnError>true</failOnError>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
+<!--            <plugin>-->
+<!--                &lt;!&ndash; Changes &ndash;&gt;-->
+<!--                &lt;!&ndash; Takes care of the changes log &ndash;&gt;-->
+<!--                &lt;!&ndash; It is set to also validate the changes log file &ndash;&gt;-->
+<!--                <groupId>org.apache.maven.plugins</groupId>-->
+<!--                <artifactId>maven-changes-plugin</artifactId>-->
+<!--                <version>2.12.1</version>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <id>check-changes</id>-->
+<!--                        <phase>pre-site</phase>-->
+<!--                        <goals>-->
+<!--                            <goal>changes-check</goal>-->
+<!--                        </goals>-->
+<!--                    </execution>-->
+<!--                    <execution>-->
+<!--                        <id>validate-changes</id>-->
+<!--                        <phase>pre-site</phase>-->
+<!--                        <goals>-->
+<!--                            <goal>changes-validate</goal>-->
+<!--                        </goals>-->
+<!--                        <configuration>-->
+<!--                            <failOnError>true</failOnError>-->
+<!--                        </configuration>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+<!--            </plugin>-->
         </plugins>
     </build>
 </project>
