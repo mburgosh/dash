@@ -12,4 +12,8 @@ public final class IsList<T> {
     public boolean empty() {
         return list.isEmpty();
     }
+
+    public boolean notEmpty() {
+        return !list.isEmpty();
+    }
 }

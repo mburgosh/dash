@@ -24,10 +24,15 @@ public class Usage {
         doesIt = Poet.does("Some string").contain("e s");
         log.info("Does it? {}", doesIt);
 
-        isIt = Poet.is("Some string").blank();
-        log.info("Is it? {}", isIt);
-        isIt = Poet.is(Dash.list.of("Some", "strings")).empty();
-        log.info("Is it? {}", isIt);
+        log.info(
+                "Is it? {}, {}, {}, {}",
+                Poet.is("").blank(),
+                Poet.is(" ").blank(),
+                Poet.is("test").notBlank(),
+                Poet.is(" test ").notBlank(),
+                Poet.is(Dash.list.of("Some", "strings")).notEmpty(),
+                Poet.is(Dash.list.of()).empty()
+        );
 
         log.info(
                 Poet.replace("Monday")

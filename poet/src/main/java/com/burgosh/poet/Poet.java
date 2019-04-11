@@ -15,6 +15,10 @@ public final class Poet {
         return new DoesString(does);
     }
 
+    public static boolean isNull(Object isNull) {
+        return isNull == null;
+    }
+
     public static IsString is(String is) {
         return new IsString(is);
     }

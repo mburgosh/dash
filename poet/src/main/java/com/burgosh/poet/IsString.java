@@ -13,7 +13,7 @@ public final class IsString {
         return Dash.string.isBlank(someString);
     }
 
-    public boolean notblank() {
+    public boolean notBlank() {
         return Dash.string.isNotBlank(someString);
     }
 }
