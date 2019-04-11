@@ -30,16 +30,20 @@ class UsageDash {
 
 ```Java
 import com.burgosh.dash.Dash;
+import com.burgosh.poet.Poet;
+
+import java.util.List;
+import java.util.Set;
 
 class UsagePoet {
     List<String> hello = Poet.in("Now in Oslo!")
                              .replace("Oslo")
                              .with("New York");
     
-    Set<String> desired = Dash.set.of("one", "two", "three", "four");
-    Set<String> current = Dash.set.of("four", "five");
-    ImmutableSet<String> toAdd = Poet.giveAllIn(desired).notIn(current);
-    ImmutableSet<String> toKeep = Poet.giveAllIn(desired).alsoIn(current);
+    Set<String>          desired  = Dash.set.of("one", "two", "three", "four");
+    Set<String>          current  = Dash.set.of("four", "five");
+    ImmutableSet<String> toAdd    = Poet.giveAllIn(desired).notIn(current);
+    ImmutableSet<String> toKeep   = Poet.giveAllIn(desired).alsoIn(current);
     ImmutableSet<String> toRemove = Poet.giveAllNotIn(desired).butIn(current);
 }
 ```

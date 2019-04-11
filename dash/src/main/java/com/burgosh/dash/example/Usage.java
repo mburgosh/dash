@@ -44,9 +44,9 @@ class Usage {
 
         log.info(
                 "String blank tests: {}, {}, {}, {}, {}",
-                Dash.string.isNotBlank(null),
-                Dash.string.isNotBlank(""),
-                Dash.string.isNotBlank(" "),
+                Dash.string.isBlank(null),
+                Dash.string.isBlank(""),
+                Dash.string.isBlank(" "),
                 Dash.string.isNotBlank("test"),
                 Dash.string.isNotBlank(" test ")
         );
