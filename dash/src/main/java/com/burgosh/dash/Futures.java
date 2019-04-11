@@ -2,6 +2,7 @@ package com.burgosh.dash;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.function.Function;
@@ -18,20 +19,20 @@ public class Futures {
 
     Futures() { }
 
-    // maybe it is better to return an optional list? empty list is not the same as successful operation
-    public static <T> List<T> ofAll(List<CompletableFuture<T>> possibleFutures, Function<Throwable, RuntimeException> exceptionMapper) {
+    public static <T> List<T> ofAll(List<CompletableFuture<T>> possibleFutures, Function<ExecutionException, RuntimeException> exceptionMapper) {
         List<T> results = new ArrayList<>();
 
         boolean interrupted = false;
-        Throwable throwable = null;
+        ExecutionException throwable = null;
         for (CompletableFuture<T> possibleFuture : possibleFutures) {
             try {
-                if (interrupted || throwable != null) possibleFuture.cancel(true);
+                if (interrupted) possibleFuture.cancel(true);
                 T concreteFuture = possibleFuture.get();
                 results.add(concreteFuture);
             } catch (InterruptedException e) {
                 interrupted = true;
             } catch (ExecutionException e) {
+                interrupted = true;
                 throwable = e;
             }
         }
@@ -43,23 +44,20 @@ public class Futures {
     }
 
     public static <T> List<T> ofAll(List<CompletableFuture<T>> possibleFutures) {
-        List<T> results = new ArrayList<>();
-
-        boolean interrupted = false;
-        for (CompletableFuture<T> possibleFuture : possibleFutures) {
-            try {
-                if (interrupted) possibleFuture.cancel(true);
-                T concreteFuture = possibleFuture.get();
-                results.add(concreteFuture);
-            } catch (Throwable e) {
-                interrupted = true;
-            }
-        }
-
-        if (interrupted) return new ArrayList<>();
-
-        return results;
+        return ofAll(possibleFutures, executionException -> null);
     }
+
+    public static <T> Optional<List<T>> findAll(List<CompletableFuture<T>> possibleFutures, Function<ExecutionException, RuntimeException> exceptionMapper) {
+        List<T> results = ofAll(possibleFutures, exceptionMapper);
+
+        if (possibleFutures.isEmpty() == results.isEmpty()) return Optional.of(results);
+        else return Optional.empty();
+    }
+
+    public static <T> Optional<List<T>> findAll(List<CompletableFuture<T>> possibleFutures) {
+        return findAll(possibleFutures, executionException -> null);
+    }
+
 
     public static <T> List<T> ofAllSuccessful(List<CompletableFuture<T>> possibleFutures) {
         List<T> results = new ArrayList<>();
@@ -70,6 +68,22 @@ public class Futures {
                 results.add(concreteFuture);
             }
             catch (InterruptedException | ExecutionException ignored) { }
+        }
+
+        return results;
+    }
+
+    public static <T> List<T> ofAllSuccessful(List<CompletableFuture<T>> possibleFutures, Function<ExecutionException, RuntimeException> exceptionMapper) {
+        List<T> results = new ArrayList<>();
+
+        for (CompletableFuture<T> possibleFuture : possibleFutures) {
+            try {
+                T concreteFuture = possibleFuture.get();
+                results.add(concreteFuture);
+            }
+            catch (InterruptedException | ExecutionException ignored) {
+                // todo maybe some logging here
+            }
         }
 
         return results;
