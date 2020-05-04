@@ -46,4 +46,12 @@ public final class Poet {
     public static Strings.Replace replace(String replace) {
         return strings.replace(replace);
     }
+    
+    public static <T> Optional<T> decision(boolean predicate, T supplied) {
+        return predicate ? Optional.of(supplied) : Optional.empty();
+    }
+    
+    public static <T> Optional<T> decision(boolean predicate, Supplier<T> supplier) {
+        return predicate ? Optional.of(supplier.get()) : Optional.empty();
+    }
 }
